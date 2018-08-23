@@ -6,9 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class CameraGameplay : CameraParent {
@@ -59,12 +57,6 @@ public class CameraGameplay : CameraParent {
 		_trFocalAddOne = _trFocalAddOne.GetComponent<Transform> ();
 		//_trFocalAddTwo = _trFocalAddTwo.GetComponent<Transform> ();
 
-		// Get Post Processing initial settings, then replace the instance with a modifiable duplicate.
-		var ppOriginal = GetComponent<PostProcessingBehaviour> ();
-
-		_pp = Instantiate (ppOriginal.profile);
-		ppOriginal.profile = _pp;
-
 		// Fade into the game.
 		StartCoroutine (FadeToGame());
 
@@ -106,73 +98,6 @@ public class CameraGameplay : CameraParent {
 		// Lerp to the final position.
 		transform.position = Vector3.Lerp (transform.position, new Vector3 (v3CameraPos.x, v3CameraPos.y, transform.position.z), Time.deltaTime * _flCameraSpeed);
 	
-	}
-
-
-	// --------------------------------------------------------------------------------------------------------------------------------------------------------- */
-
-	// Fade the camera OUT.
-	public IEnumerator FadeFromGame () {
-
-		Time.timeScale = 1f;
-
-		bool isTransition = true;
-
-		while (isTransition) {
-
-			var ppBloom = _pp.bloom.settings;
-			ppBloom.bloom.intensity = Mathf.Lerp (ppBloom.bloom.intensity, 50f, Time.deltaTime * _flTransition);
-			ppBloom.bloom.threshold = Mathf.Lerp (ppBloom.bloom.threshold, 0f, Time.deltaTime * _flTransition);
-			ppBloom.bloom.radius = Mathf.Lerp (ppBloom.bloom.radius, 7f, Time.deltaTime * _flTransition);
-			_pp.bloom.settings = ppBloom;
-
-			if (ppBloom.bloom.threshold < 0.1f && ppBloom.bloom.radius > 6.9f && ppBloom.bloom.intensity > 49f) {
-				isTransition = false;
-			}
-
-			yield return new WaitForEndOfFrame ();
-
-		}
-
-		SceneManager.LoadScene (_itNewScene);
-
-	}
-
-	// Fade the camera IN.
-	public IEnumerator FadeToGame () {
-
-		Time.timeScale = 1f;
-
-		bool isTransition = true;
-
-		// Set up our modification variable...
-		var ppBloom = _pp.bloom.settings;
-
-		// Store it's original values...
-		float flBloomIntensity = _pp.bloom.settings.bloom.intensity;
-		float flBloomThreshhold = _pp.bloom.settings.bloom.threshold;
-		float flBloomRadius = _pp.bloom.settings.bloom.radius;
-
-		// Set the transition-in beginning values...
-		ppBloom.bloom.intensity = 50f;
-		ppBloom.bloom.threshold = 0f;
-		ppBloom.bloom.radius = 7f;
-
-		// And then until it's finished lerping to it's original values, continue lerping!
-		while (isTransition) {
-			
-			ppBloom.bloom.intensity = Mathf.Lerp (ppBloom.bloom.intensity, flBloomIntensity, Time.deltaTime * _flTransition);
-			ppBloom.bloom.threshold = Mathf.Lerp (ppBloom.bloom.threshold, flBloomThreshhold, Time.deltaTime * _flTransition * 0.1f);
-			ppBloom.bloom.radius = Mathf.Lerp (ppBloom.bloom.radius, flBloomRadius, Time.deltaTime * _flTransition * 0.1f);
-			_pp.bloom.settings = ppBloom;
-
-			if (ppBloom.bloom.threshold == flBloomThreshhold && ppBloom.bloom.radius == flBloomRadius && ppBloom.bloom.intensity == flBloomIntensity)
-				isTransition = false;
-
-			yield return new WaitForEndOfFrame();
-
-		}
-		
 	}
 
 }

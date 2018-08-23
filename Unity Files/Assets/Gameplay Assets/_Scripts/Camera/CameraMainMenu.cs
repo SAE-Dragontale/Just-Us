@@ -5,12 +5,7 @@
 	Description: 	This script controls all the neccissary functions for the Main Menu.
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.PostProcessing;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 using UnityEditor;
@@ -63,12 +58,6 @@ public class CameraMainMenu : CameraParent {
 		transform.position = _atrCheckpoints [_itStartingLocale-1].position;
 		CameraToLocation (_itStartingLocale);
 
-		// Get Post Processing initial settings, then replace the instance with a modifiable duplicate.
-		var ppTemporary = GetComponent<PostProcessingBehaviour> ();
-
-		_pp = Instantiate (ppTemporary.profile);
-		ppTemporary.profile = _pp;
-
 	}
 
 	// On Frame.
@@ -105,7 +94,7 @@ public class CameraMainMenu : CameraParent {
 		else
 			_flCameraSpeedModifier = 0f;
 
-		_flCameraSpeedCurrent = Mathf.Clamp(Mathf.Lerp (_flCameraSpeedCurrent, _flCameraSpeed * _flCameraSpeedModifier, Time.deltaTime * _flAcceleration), 0f, Mathf.Infinity);
+		_flCameraSpeedCurrent = Mathf.Max(Mathf.Lerp (_flCameraSpeedCurrent, _flCameraSpeed * _flCameraSpeedModifier, Time.deltaTime * _flAcceleration), 0f);
 
 		// Apply the shake to the camera's trajectory.
 		v3CameraPos = AddPirleanToVector(v3CameraPos);
