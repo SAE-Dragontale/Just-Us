@@ -74,7 +74,7 @@ public class CameraParent : MonoBehaviour {
 
 		//}
 
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(_itNewScene);
 
 		yield return null;
 

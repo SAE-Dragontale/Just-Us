@@ -157,6 +157,7 @@ public class CameraMainMenu : CameraParent {
 
 	public void StartGame (int itPlayerMode) {
 		PlayerPrefs.SetInt (_stPlayerMode, itPlayerMode);
+		_itNewScene = 1;
 		StartCoroutine (FadeFromGame());
 	}
 

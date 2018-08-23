@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -642,7 +642,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1364229654}
   - component: {fileID: 1148291634}
-  - component: {fileID: 1148291633}
   - component: {fileID: 1148291632}
   - component: {fileID: 1148291631}
   - component: {fileID: 1148291630}
@@ -700,14 +699,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1148291629}
   m_Enabled: 1
---- !u!92 &1148291633
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 92002417467566174, guid: 7fe86172f32a6da49807da34fb104158,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1148291629}
-  m_Enabled: 1
 --- !u!20 &1148291634
 Camera:
   m_ObjectHideFlags: 0
@@ -718,7 +709,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.10014316, g: 0.0522275, b: 0.102941155, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1781,6 +1772,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CameraToLocation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114469061962927732, guid: e66da348e363d884e90f1f054158b110,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66da348e363d884e90f1f054158b110, type: 2}

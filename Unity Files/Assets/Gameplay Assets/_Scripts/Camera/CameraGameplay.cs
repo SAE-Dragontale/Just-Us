@@ -5,9 +5,7 @@
 	Description: 	This script controls the camera's position in relation to the player objects. This script must be applied to the camera object.
 // --------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
-using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CameraGameplay : CameraParent {
 
@@ -66,6 +64,7 @@ public class CameraGameplay : CameraParent {
 	void Update () {
 
 		if (_isEnding) {
+			_isEnding = false;
 			StartCoroutine (FadeFromGame ());
 		}
 
