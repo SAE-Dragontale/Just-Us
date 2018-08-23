@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e29704232a66c2445abd7fe16bc3be3b
+timeCreated: 1499067815
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Raider Crusader Straight
+  fontNames:
+  - Raider Crusader Straight
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
